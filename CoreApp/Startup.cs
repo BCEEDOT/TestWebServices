@@ -29,6 +29,16 @@ namespace CoreApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //Only for development
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                    builder => builder.AllowAnyOrigin()
+                                       .AllowAnyMethod()
+                                       .AllowAnyHeader()
+                                       .AllowCredentials());
+            });
+
             var connectionString = Configuration["DbConnection"];
             services.AddScoped(_ => new ValueContext(connectionString));
             services.AddSingleton<IValueRepository, ValueRepository>();
@@ -44,6 +54,10 @@ namespace CoreApp
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
+
+            //Only for development
+            //Todo: Remove for production
+            app.UseCors("CorsPolicy");
 
             app.UseMvc();
         }
