@@ -4,6 +4,8 @@
 /obj
 /EF/obj
 /CoreApp/obj
+/EF/bin
+/CoreApp/bin
 
 # dependencies
 /packages

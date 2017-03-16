@@ -32,6 +32,9 @@ namespace CoreApp
             var connectionString = Configuration["DbConnection"];
             services.AddScoped(_ => new ValueContext(connectionString));
             services.AddSingleton<IValueRepository, ValueRepository>();
+            services.AddScoped(_ => new ProductContext(connectionString));
+            //services.AddSingleton<IProductRepository, ProductRepository>();
+            services.AddScoped<IProductRepository, ProductRepository>();
             // Add framework services.
             services.AddMvc();
         }
