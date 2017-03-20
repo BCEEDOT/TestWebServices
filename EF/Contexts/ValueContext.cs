@@ -11,6 +11,10 @@ namespace EF.Contexts
     {
         private const string LocalDb = "Server=(localdb)\\mssqllocaldb;Database=ecatlocaldev;Trusted_Connection=True;MultipleActiveResultSets=true";
 
+        public static string ContextName { get { return "ValueContext"; } }
+
+        public ValueContext() : base(LocalDb) { }
+
         public ValueContext(string connectionString = LocalDb) : base(connectionString)
         { 
 

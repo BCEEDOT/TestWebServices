@@ -10,6 +10,7 @@ namespace EF.Contexts
     public class ProductContext : DbContext
     {
         private const string LocalDb = "Server=(localdb)\\mssqllocaldb;Database=ecatlocaldev;Trusted_Connection=True;MultipleActiveResultSets=true";
+
         public static string ContextName { get { return "ProductContext"; } }
 
         public ProductContext() : base(LocalDb) { }
